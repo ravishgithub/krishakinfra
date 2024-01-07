@@ -1,4 +1,4 @@
-# krishakinfra
+# Krishakinfra 
 # Deploying Oracle Cloud Infrastructure Resources with Terraform
 
 This repository contains Terraform code to provision resources on Oracle Cloud Infrastructure (OCI). It includes configurations for setting up a VCN, subnets, gateways, and routing.
