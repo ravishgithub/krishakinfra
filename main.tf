@@ -25,5 +25,13 @@ resource "oci_core_service_gateway" "kheti_service_gw" {
   services {
     service_id = var.service_name  # Replace with the actual OCI service OCID
   }
+
+}
+
+resource "oci_objectstorage_bucket" "kheti_bucket" {
+  compartment_id = var.compartment_id
+  name           = "kheti-bucket"
+  storage_tier   = "STANDARD"
+  namespace      = var.object_storage_namespace
 }
 

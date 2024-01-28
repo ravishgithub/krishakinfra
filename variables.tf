@@ -32,3 +32,9 @@ variable "service_name" {
   type    = string
   default = "objectstorage"
 }
+
+variable "object_storage_namespace" {
+  type = string
+  # Provide the fetched namespace as the default value
+  default = "bmmtwsrmmaap"
+}
