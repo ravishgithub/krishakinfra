@@ -30,8 +30,7 @@ resource "oci_core_service_gateway" "kheti_service_gw" {
 
 resource "oci_objectstorage_bucket" "kheti_bucket" {
   compartment_id = var.compartment_id
-  name           = "kheti-bucket"
-  storage_tier   = "STANDARD"
+  name           = "kheti-bucket"  
   namespace      = var.object_storage_namespace
 }
 
