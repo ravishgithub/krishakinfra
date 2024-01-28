@@ -17,16 +17,16 @@ resource "oci_core_nat_gateway" "kheti_nat_gw" {
 }
 
 
-resource "oci_core_service_gateway" "kheti_service_gw" {
-  display_name    = "kheti_service_gw"
-  vcn_id          = oci_core_virtual_network.kheti_vcn.id
-  compartment_id  = var.compartment_id
+#resource "oci_core_service_gateway" "kheti_service_gw" {
+  #display_name    = "kheti_service_gw"
+  #vcn_id          = oci_core_virtual_network.kheti_vcn.id
+  #compartment_id  = var.compartment_id
 
-  services {
-    service_id =  oci_objectstorage_bucket.kheti_bucket.bucket_id # Replace with the actual OCI service OCID
-  }
+  #services {
+    #service_id =  oci_objectstorage_bucket.kheti_bucket.bucket_id # Replace with the actual OCI service OCID
+  #}
 
-}
+#}
 
 resource "oci_objectstorage_bucket" "kheti_bucket" {
   compartment_id = var.compartment_id
