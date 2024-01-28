@@ -27,3 +27,8 @@ variable "private_key_path" {
 variable "region" {
   description = "OCI Region Identifier"
 }
+
+variable "service_name" {
+  type    = string
+  default = "objectstorage"
+}

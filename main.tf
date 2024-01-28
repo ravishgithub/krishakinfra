@@ -23,7 +23,7 @@ resource "oci_core_service_gateway" "kheti_service_gw" {
   compartment_id  = var.compartment_id
 
   services {
-    service_id = ""  # Replace with the actual OCI service OCID
+    service_id = var.service_name  # Replace with the actual OCI service OCID
   }
 }
 
