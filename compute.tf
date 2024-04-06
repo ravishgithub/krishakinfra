@@ -1,3 +1,15 @@
+resource "oci_core_boot_volume" "rtlinux_boot_volume" {
+  compartment_id = var.compartment_id
+  display_name   = "rtlinux-boot-volume"
+  size_in_gbs    = 50  # Adjust size as needed
+}
+
+resource "oci_core_volume" "rtlinux_block_volume" {
+  compartment_id = var.compartment_id
+  display_name   = "rtlinux-block-volume"
+  size_in_gbs    = 100  # Adjust size as needed
+}
+
 resource "oci_core_instance" "rtlinux_instance" {
   availability_domain = var.availability_domain
   compartment_id      = var.compartment_id
@@ -20,19 +32,11 @@ resource "oci_core_instance" "rtlinux_instance" {
   }
 
   boot_volume {
-    display_name     = "rtlinux-boot-volume"
-    compartment_id   = var.compartment_id
-    size_in_gbs      = 50
-    source_details {
-      source_type = "image"
-      image_id    = var.linuxvm_image_id
-    }
+    volume_id = oci_core_boot_volume.rtlinux_boot_volume.id
   }
 
   block_volume {
-    display_name     = "rtlinux-block-volume"
-    compartment_id   = var.compartment_id
-    size_in_gbs      = 100
+    volume_id = oci_core_volume.rtlinux_block_volume.id
     is_pv_encryption_in_transit_enabled = true
   }
 }
