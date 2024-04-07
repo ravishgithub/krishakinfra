@@ -21,8 +21,7 @@ resource "oci_core_route_table" "kheti_public_route" {
   compartment_id = var.compartment_id
 
   # Route rule for internet-bound traffic
-  route {
-    destination     = "0.0.0.0/0"
+  route_rules {    
     destination_type = "CIDR_BLOCK"
     network_entity_id = oci_core_internet_gateway.kheti_igw.id
   }
@@ -33,8 +32,7 @@ resource "oci_core_route_table" "kheti_private_route" {
   compartment_id = var.compartment_id
 
    # Route rule for NAT gateway for internet access
-  route {
-    destination     = "0.0.0.0/0"
+  route_rules {    
     destination_type = "CIDR_BLOCK"
     network_entity_id = oci_core_nat_gateway.kheti_nat_gw.id
   }
