@@ -17,7 +17,7 @@ resource "oci_core_instance" "rtlinux_instance" {
   shape_config {
     ocpus                        = var.ocpus
     memory_in_gbs                = var.memory_in_gbs
-    networking_bandwidth_in_gbps = var.networking_bandwidth_in_gbps
+    ##networking_bandwidth_in_gbps = var.networking_bandwidth_in_gbps
   }
 
    source_details {
