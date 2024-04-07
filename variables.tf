@@ -67,12 +67,6 @@ variable "networking_bandwidth_in_gbps" {
   default     = 2
 }
 
-variable "boot_volume_size_in_gbs" {
-  type =        string
-  description = "Compartment OCID"
-  default = "500"
-}
-
 variable "ssh_authorized_key" {
   description = "SSH public key used to connect to the instance"
 }
