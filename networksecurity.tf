@@ -62,10 +62,7 @@ resource "oci_core_security_list" "private_security_list" {
   }
 
   ingress_security_rules {
-    protocol    = "6"   # TCP protocol for SSH and HTTP
-    source      = "${oci_core_network_security_group.private_network_security_group.id}"
-    tcp_options {
-      destination_port_range = "0-65535"   # Allow all ports from the private network security group
-    }
+    protocol    = "all"   # Allow all protocols
+    source      = oci_core_network_security_group.private_network_security_group.id
   }
 }
