@@ -47,19 +47,7 @@ resource "oci_core_network_security_group" "private_network_security_group" {
   compartment_id = var.compartment_id
   vcn_id         = oci_core_virtual_network.kheti_vcn.id
   display_name   = "private-network-security-group"
-
-  egress_security_rules {
-    destination     = "0.0.0.0/0"
-    protocol        = "all"
-  }
-
-  ingress_security_rules {
-    protocol    = "6"   # TCP protocol for SSH and HTTP
-    source      = "${oci_core_security_list.public_security_list.id}"
-    tcp_options {
-      destination_port_range = "0-65535"   # Allow all ports from the public subnet
-    }
-  }
+  
 }
 
 # Create a security list for the private subnet
