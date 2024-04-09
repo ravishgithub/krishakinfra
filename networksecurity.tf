@@ -1,7 +1,7 @@
 # Create a security list for the public subnet
 resource "oci_core_security_list" "kheti_public_security_list" {
   compartment_id = var.compartment_id
-  vcn_id         = oci_core_vcn.kheti_vcn.id
+  vcn_id         = oci_core_virtual_network.kheti_vcn.id
   display_name   = "kheti-public-security-list"
 
   ingress_security_rules {
@@ -30,7 +30,7 @@ resource "oci_core_security_list" "kheti_public_security_list" {
 # Create a security list for the private subnet
 resource "oci_core_security_list" "kheti_private_security_list" {
   compartment_id = var.compartment_id
-  vcn_id         = oci_core_vcn.kheti_vcn.id
+  vcn_id         = oci_core_virtual_network.kheti_vcn.id
   display_name   = "kheti-private-security-list"
 
   ingress_security_rules {
