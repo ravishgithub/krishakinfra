@@ -13,9 +13,13 @@ Before getting started, ensure you have the following:
 ## Getting Started
 
 ### Clone the Repository
-
+### create terraform.tfvvars with values for variables declared in variables.tf
+### You can skip where default provided
 Clone this repository to your local machine:
 
 ```bash
 git clone git@github.com:ravishgithub/krishakinfra.git
 cd krishakinfra
+terroform init
+terraform plan
+terraform apply
