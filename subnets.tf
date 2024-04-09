@@ -22,6 +22,7 @@ resource "oci_core_route_table" "kheti_public_route" {
 
   # Route rule for internet-bound traffic
   route_rules {    
+    destination           = "0.0.0.0/0"  # This is the default route for all internet-bound traffic
     destination_type = "CIDR_BLOCK"
     network_entity_id = oci_core_internet_gateway.kheti_igw.id
   }
@@ -33,6 +34,7 @@ resource "oci_core_route_table" "kheti_private_route" {
 
    # Route rule for NAT gateway for internet access
   route_rules {    
+    destination           = "0.0.0.0/0"  # This is the default route for all internet-bound traffic
     destination_type = "CIDR_BLOCK"
     network_entity_id = oci_core_nat_gateway.kheti_nat_gw.id
   }
