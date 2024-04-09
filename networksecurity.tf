@@ -9,8 +9,8 @@ resource "oci_core_security_list" "kheti_public_security_list" {
     source   = "0.0.0.0/0"  # Allow SSH from anywhere
     tcp_options {
       source_port_range {
-        max = 22
-        min = 22
+        max = var.ssh_port
+        min = var.ssh_port
       }
     }
   }
@@ -20,8 +20,8 @@ resource "oci_core_security_list" "kheti_public_security_list" {
     source   = "0.0.0.0/0"  # Allow HTTPS from anywhere
     tcp_options {
       source_port_range {
-        max = 443
-        min = 443
+        max = var.https_port
+        min = var.https_port
       }
     }
   }
@@ -38,8 +38,8 @@ resource "oci_core_security_list" "kheti_private_security_list" {
     source   = oci_core_subnet.kheti_public_subnet.cidr_block  # Allow SSH from the public subnet
     tcp_options {
       source_port_range {
-        max = 22
-        min = 22
+        max = var.ssh_port
+        min = var.ssh_port
       }
     }
   }
@@ -49,8 +49,8 @@ resource "oci_core_security_list" "kheti_private_security_list" {
     source   = oci_core_subnet.kheti_public_subnet.cidr_block  # Allow HTTPS from the public subnet
     tcp_options {
       source_port_range {
-        max = 443
-        min = 443
+        max = var.https_port
+        min = var.https_port
       }
     }
   }

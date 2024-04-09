@@ -46,6 +46,16 @@ variable "assign_public_ip" {
   default = false
 }
 
+variable "ssh_port" {
+  description = "The SSH port number."
+  default     = 22
+}
+
+variable "https_port" {
+  description = "The HTTPS port number."
+  default     = 443
+}
+
 variable "ocpus" {
   description = "Number of OCPUs for the instance"
   default     = 2
