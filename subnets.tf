@@ -17,6 +17,7 @@ resource "oci_core_subnet" "kheti_private_subnet" {
 }
 
 resource "oci_core_route_table" "kheti_public_route" {
+  display_name = "kheti_public_route"
   vcn_id = oci_core_virtual_network.kheti_vcn.id
   compartment_id = var.compartment_id
 
@@ -29,6 +30,7 @@ resource "oci_core_route_table" "kheti_public_route" {
 }
 
 resource "oci_core_route_table" "kheti_private_route" {
+  display_name = "kheti_private_route"
   vcn_id = oci_core_virtual_network.kheti_vcn.id
   compartment_id = var.compartment_id
 
