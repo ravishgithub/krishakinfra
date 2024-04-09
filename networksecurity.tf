@@ -35,7 +35,7 @@ resource "oci_core_security_list" "kheti_private_security_list" {
 
   ingress_security_rules {
     protocol = "6"   # TCP protocol for SSH
-    source   = oci_core_security_list.kheti_public_security_list.id  # Allow SSH only from the public subnet
+    source   = oci_core_subnet.kheti_public_subnet.cidr_block  # Allow SSH from the public subnet
     tcp_options {
       source_port_range {
         max = 22
@@ -46,7 +46,7 @@ resource "oci_core_security_list" "kheti_private_security_list" {
 
   ingress_security_rules {
     protocol = "6"   # TCP protocol for HTTPS
-    source   = oci_core_security_list.kheti_public_security_list.id  # Allow HTTPS only from the public subnet
+    source   = oci_core_subnet.kheti_public_subnet.cidr_block  # Allow HTTPS from the public subnet
     tcp_options {
       source_port_range {
         max = 443
