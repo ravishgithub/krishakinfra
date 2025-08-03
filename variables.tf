@@ -4,18 +4,18 @@ variable "tenancy_ocid" {
 }
 
 variable "region" {
-  description = "Region where resources will be deployed"
+  description = "OCI region (e.g. ap-mumbai-1)"
   type        = string
   default     = "ap-mumbai-1"
 }
 
 variable "availability_domain" {
-  description = "Availability Domain used for zonal resources"
+  description = "Availability Domain for zonal resources"
   type        = string
   default     = "nJCt:AP-MUMBAI-1-AD-1"
 }
 
 variable "admin_email" {
-  description = "Administrator email for the identity domain"
+  description = "Administrator email for identity domain"
   type        = string
 }

@@ -1,19 +1,21 @@
-resource "oci_identity_domain" "krishak_domain" {
-  compartment_id   = oci_identity_compartment.krishak_compartment.id
-  name             = "krishak-id-domain"
-  description      = "Identity domain for Krishak site users"
-  license_type     = "free"
-  admin_first_name = "Admin"
-  admin_last_name  = "User"
-  admin_email      = var.admin_email
+resource "oci_identity_domains" "krishak_domain" {
+  compartment_id = oci_identity_compartment.krishak_compartment.id
+  display_name   = "krishak-id-domain"
+  home_region    = var.region
+  license_type   = "free"
+  admin = {
+    first_name = "Admin"
+    last_name  = "User"
+    email      = var.admin_email
+  }
 }
 
-resource "oci_identity_domain_group" "admins" {
-  domain_id     = oci_identity_domain.krishak_domain.id
-  display_name  = "Krishak_Admins"
+resource "oci_identity_domains_groups" "admins" {
+  domain_id    = oci_identity_domains.krishak_domain.id
+  display_name = "Krishak_Admins"
 }
 
-resource "oci_identity_domain_group" "developers" {
-  domain_id     = oci_identity_domain.krishak_domain.id
-  display_name  = "Krishak_Developers"
+resource "oci_identity_domains_groups" "developers" {
+  domain_id    = oci_identity_domains.krishak_domain.id
+  display_name = "Krishak_Developers"
 }

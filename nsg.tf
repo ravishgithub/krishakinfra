@@ -1,6 +1,6 @@
 resource "oci_core_network_security_group" "api_nsg" {
   compartment_id = oci_identity_compartment.krishak_compartment.id
-  vcn_id         = var.vcn_id
+  vcn_id         = oci_core_virtual_network.krishak_vcn.id
   display_name   = "krishak-api-nsg"
 }
 
