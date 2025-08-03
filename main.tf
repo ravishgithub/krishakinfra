@@ -1,5 +1,2 @@
-// Entry point file that references all modules/components
-
-module "krishak_infra" {
-  source = "./"
-}
+// main.tf
+// This file intentionally left minimal. Terraform loads all .tf files in the root automatically.
