@@ -1,8 +1,6 @@
-// Basic security list example for reference (use NSGs in real flow)
-
 resource "oci_core_security_list" "krishak_security_list" {
   compartment_id = oci_identity_compartment.krishak_compartment.id
-  vcn_id         = var.vcn_id
+  vcn_id         = oci_core_virtual_network.krishak_vcn.id
   display_name   = "krishak-security-list"
 
   egress_security_rules {

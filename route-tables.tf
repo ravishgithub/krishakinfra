@@ -1,6 +1,6 @@
 resource "oci_core_route_table" "krishak_public_rt" {
   compartment_id = oci_identity_compartment.krishak_compartment.id
-  vcn_id         = var.vcn_id
+  vcn_id         = oci_core_virtual_network.krishak_vcn.id
   display_name   = "krishak-public-route-table"
 
   route_rules {
@@ -12,7 +12,7 @@ resource "oci_core_route_table" "krishak_public_rt" {
 
 resource "oci_core_route_table" "krishak_private_rt" {
   compartment_id = oci_identity_compartment.krishak_compartment.id
-  vcn_id         = var.vcn_id
+  vcn_id         = oci_core_virtual_network.krishak_vcn.id
   display_name   = "krishak-private-route-table"
 
   route_rules {
