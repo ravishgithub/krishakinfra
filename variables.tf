@@ -19,8 +19,3 @@ variable "admin_email" {
   description = "Administrator email for the identity domain"
   type        = string
 }
-
-variable "vcn_id" {
-  description = "The OCID of the VCN"
-  type        = string
-}
