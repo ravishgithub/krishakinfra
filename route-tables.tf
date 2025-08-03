@@ -1,0 +1,29 @@
+resource "oci_core_route_table" "krishak_public_rt" {
+  compartment_id = oci_identity_compartment.krishak_compartment.id
+  vcn_id         = var.vcn_id
+  display_name   = "krishak-public-route-table"
+
+  route_rules {
+    destination       = "0.0.0.0/0"
+    destination_type  = "CIDR_BLOCK"
+    network_entity_id = oci_core_internet_gateway.krishak_igw.id
+  }
+}
+
+resource "oci_core_route_table" "krishak_private_rt" {
+  compartment_id = oci_identity_compartment.krishak_compartment.id
+  vcn_id         = var.vcn_id
+  display_name   = "krishak-private-route-table"
+
+  route_rules {
+    destination       = "0.0.0.0/0"
+    destination_type  = "CIDR_BLOCK"
+    network_entity_id = oci_core_nat_gateway.krishak_nat.id
+  }
+
+  route_rules {
+    destination       = "all-iad-services-in-oracle-services-network"
+    destination_type  = "SERVICE_CIDR_BLOCK"
+    network_entity_id = oci_core_service_gateway.krishak_service_gateway.id
+  }
+}

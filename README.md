@@ -1,21 +1,49 @@
-# Krishakinfra 
-# Deploying Oracle Cloud Infrastructure Resources with Terraform
+# Krishakinfra Terraform Infrastructure
 
-This repository contains Terraform code to provision resources on Oracle Cloud Infrastructure (OCI). It includes configurations for setting up a VCN, subnets, gateways, and routing.
+This repository provisions Oracle Cloud Infrastructure (OCI) resources for the Krishak application using Terraform.
 
-## Prerequisites
+## 🧱 What It Creates
 
-Before getting started, ensure you have the following:
-- An Oracle Cloud Infrastructure account
-- Terraform installed locally
-- API key and necessary credentials to access OCI
+- OCI Compartment: `krishakcompartment`
+- Identity Domain and two IAM groups
+- Network Security Group for the API backend
+- Object Storage bucket to host the React frontend
 
-## Getting Started
+## 🚀 How to Deploy Using Oracle Resource Manager (ORM)
 
-### Clone the Repository
+### 1. Prepare
 
-Clone this repository to your local machine:
+Push this repo to GitHub. Ensure it includes:
+- All `.tf` files
+- Your own `terraform.tfvars` file (or provide variables in ORM UI)
 
-```bash
-git clone git@github.com:ravishgithub/krishakinfra.git
-cd krishakinfra
+### 2. Create Stack in ORM
+
+1. Go to **OCI Console → Developer Services → Resource Manager → Stacks**
+2. Click **Create Stack**
+3. Choose **GitHub** as source and select your repo and branch
+4. Provide input values manually or through `terraform.tfvars`
+5. Run Plan → Apply
+
+### 3. Required Inputs
+
+Example `terraform.tfvars`:
+
+```
+tenancy_ocid         = "ocid1.tenancy.oc1..your_ocid"
+region               = "ap-mumbai-1"
+availability_domain  = "nJCt:AP-MUMBAI-1-AD-1"
+admin_email          = "your-admin@example.com"
+```
+
+### 4. Accessing React Frontend
+
+Once deployed, upload your React `index.html` and static files to the generated bucket using:
+
+```
+oci os object put -bn krishak-frontend --file index.html --content-type text/html
+```
+
+Access it via the output URL from Terraform.
+
+---

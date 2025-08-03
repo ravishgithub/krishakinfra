@@ -1,57 +1,32 @@
-# Create a security list for the public subnet
-resource "oci_core_security_list" "kheti_public_security_list" {
-  compartment_id = var.compartment_id
-  vcn_id         = oci_core_virtual_network.kheti_vcn.id
-  display_name   = "kheti-public-security-list"
+// Basic security list example for reference (use NSGs in real flow)
+
+resource "oci_core_security_list" "krishak_security_list" {
+  compartment_id = oci_identity_compartment.krishak_compartment.id
+  vcn_id         = var.vcn_id
+  display_name   = "krishak-security-list"
+
+  egress_security_rules {
+    destination = "0.0.0.0/0"
+    protocol    = "all"
+  }
 
   ingress_security_rules {
-    protocol = "6"   # TCP protocol for SSH
-    source   = "0.0.0.0/0"  # Allow SSH from anywhere
+    protocol = "6"
+    source   = "0.0.0.0/0"
+
     tcp_options {
-      source_port_range {
-        max = 22
-        min = 22
-      }
+      min = 22
+      max = 22
     }
   }
 
   ingress_security_rules {
-    protocol = "6"   # TCP protocol for HTTPS
-    source   = "0.0.0.0/0"  # Allow HTTPS from anywhere
-    tcp_options {
-      source_port_range {
-        max = 443
-        min = 443
-      }
-    }
-  }
-}
+    protocol = "6"
+    source   = "0.0.0.0/0"
 
-# Create a security list for the private subnet
-resource "oci_core_security_list" "kheti_private_security_list" {
-  compartment_id = var.compartment_id
-  vcn_id         = oci_core_virtual_network.kheti_vcn.id
-  display_name   = "kheti-private-security-list"
-
-  ingress_security_rules {
-    protocol = "6"   # TCP protocol for SSH
-    source   = oci_core_subnet.kheti_public_subnet.cidr_block  # Allow SSH from the public subnet
     tcp_options {
-      source_port_range {
-        max = 22
-        min = 22
-      }
-    }
-  }
-
-  ingress_security_rules {
-    protocol = "6"   # TCP protocol for HTTPS
-    source   = oci_core_subnet.kheti_public_subnet.cidr_block  # Allow HTTPS from the public subnet
-    tcp_options {
-      source_port_range {
-        max = 443
-        min = 443
-      }
+      min = 8080
+      max = 8080
     }
   }
 }
