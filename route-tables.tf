@@ -1,3 +1,7 @@
+###########################
+# Route Tables (Public/Private)
+###########################
+
 resource "oci_core_route_table" "krishak_public_rt" {
   compartment_id = oci_identity_compartment.krishak_compartment.id
   vcn_id         = oci_core_virtual_network.krishak_vcn.id
@@ -22,7 +26,7 @@ resource "oci_core_route_table" "krishak_private_rt" {
   }
 
   route_rules {
-    destination       = "all-iad-services-in-oracle-services-network"
+    destination       = data.oci_core_services.osn.services[0].cidr_block
     destination_type  = "SERVICE_CIDR_BLOCK"
     network_entity_id = oci_core_service_gateway.krishak_service_gateway.id
   }
