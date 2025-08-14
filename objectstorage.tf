@@ -1,6 +1,6 @@
-data "oci_objectstorage_namespace" "ns" {
-  compartment_id = oci_identity_compartment.krishak_compartment.id
-}
+# objectstorage.tf
+# Ensure namespace is provided to the bucket resource.
+data "oci_objectstorage_namespace" "ns" {}
 
 resource "oci_objectstorage_bucket" "krishak_frontend_bucket" {
   name           = "krishak-frontend"
