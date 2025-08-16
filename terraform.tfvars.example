@@ -3,3 +3,7 @@ region               = "ap-mumbai-1"
 availability_domain  = "nJCt:AP-MUMBAI-1-AD-1"
 admin_email          = "your-admin@example.com"
 vcn_id               = "ocid1.vcn.oc1..your_vcn_id"
+
+admin_first_name  = "first name"
+admin_last_name   = "last name"
+admin_email       = "youremail@gmail.com"
