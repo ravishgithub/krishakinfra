@@ -12,7 +12,3 @@ resource "oci_objectstorage_bucket" "krishak_frontend_bucket" {
   force_destroy  = true
 }
 
-output "frontend_bucket_url" {
-  value       = "https://objectstorage.${var.region}.oraclecloud.com/n/${data.oci_objectstorage_namespace.ns.namespace}/b/${oci_objectstorage_bucket.krishak_frontend_bucket.name}/o/index.html"
-  description = "Public URL to index.html in the frontend bucket"
-}
