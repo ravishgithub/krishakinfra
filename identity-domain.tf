@@ -1,3 +1,4 @@
+# Auto-pick tenancy home region (you already have these data sources/locals)
 data "oci_identity_tenancy" "tenancy" {
   tenancy_id = var.tenancy_ocid
 }
@@ -11,15 +12,14 @@ locals {
   ])
 }
 
+# Create the Identity Domain WITHOUT admin_* attributes; bypass notifications.
 resource "oci_identity_domain" "krishak_domain" {
-  compartment_id           = oci_identity_compartment.krishak_compartment.id
-  display_name             = "krishak-id-domain"
-  description              = "Identity domain for Krishak"
-  home_region              = local.home_region_name
-  license_type             = "free"
+  compartment_id  = oci_identity_compartment.krishak_compartment.id
+  display_name    = "krishak-id-domain"
+  description     = "Identity domain for Krishak"
+  home_region     = local.home_region_name
+  license_type    = "free"
 
-  admin_first_name         = var.admin_first_name
-  admin_last_name          = var.admin_last_name
-  admin_email              = var.admin_email
+  # Key workaround: no admin_* fields at all, set bypass = true
   is_notification_bypassed = true
 }
