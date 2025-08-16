@@ -6,12 +6,15 @@ output "compartment_id" {
   description = "OCID of the Krishak compartment"
 }
 
-output "identity_domain_id" {
-  value       = can(oci_identity_domain.krishak_domain[0].id)
-                ? oci_identity_domain.krishak_domain[0].id
-                : try(oci_identity_domain.krishak_domain.id, null)
+ooutput "identity_domain_id" {
+  value = try(
+    oci_identity_domain.krishak_domain[0].id, # when resource uses count = 1
+    oci_identity_domain.krishak_domain.id,    # when resource has no count
+    null                                      # when resource is not created/commented
+  )
   description = "OCID of the Identity Domain (null if not created)"
 }
+
 
 # Public URL for your frontend index.html
 output "frontend_bucket_url" {
