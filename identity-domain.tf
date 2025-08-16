@@ -21,5 +21,5 @@ resource "oci_identity_domain" "krishak_domain" {
   admin_first_name         = var.admin_first_name
   admin_last_name          = var.admin_last_name
   admin_email              = var.admin_email
-  is_notification_bypassed = false
+  is_notification_bypassed = true
 }
