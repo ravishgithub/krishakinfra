@@ -9,6 +9,6 @@ resource "oci_objectstorage_bucket" "krishak_frontend_bucket" {
   storage_tier   = "Standard"
 
   # No manual emptying needed on destroy
-  force_destroy  = true
+  # force_destroy  = true   <-- REMOVE this line; not supported by OCI provider
 }
 

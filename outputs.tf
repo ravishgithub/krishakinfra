@@ -6,10 +6,11 @@ output "compartment_id" {
   description = "OCID of the Krishak compartment"
 }
 
-# Identity Domain OCID (null if not created)
 output "identity_domain_id" {
-  value       = var.create_identity_domain && length(oci_identity_domain.krishak_domain) > 0 ? oci_identity_domain.krishak_domain[0].id : null
-  description = "OCID of the Identity Domain (null if create_identity_domain=false)"
+  value       = can(oci_identity_domain.krishak_domain[0].id)
+                ? oci_identity_domain.krishak_domain[0].id
+                : try(oci_identity_domain.krishak_domain.id, null)
+  description = "OCID of the Identity Domain (null if not created)"
 }
 
 # Public URL for your frontend index.html
