@@ -1,5 +1,3 @@
-# identity-domain.tf
-# Uses tenancy home region automatically and provides all required admin fields.
 data "oci_identity_tenancy" "tenancy" {
   tenancy_id = var.tenancy_ocid
 }
@@ -20,8 +18,8 @@ resource "oci_identity_domain" "krishak_domain" {
   home_region              = local.home_region_name
   license_type             = "free"
 
-  admin_first_name         = "Admin"
-  admin_last_name          = "User"
+  admin_first_name         = var.admin_first_name
+  admin_last_name          = var.admin_last_name
   admin_email              = var.admin_email
   is_notification_bypassed = false
 }

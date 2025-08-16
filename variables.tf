@@ -15,6 +15,16 @@ variable "availability_domain" {
   default     = "nJCt:AP-MUMBAI-1-AD-1"
 }
 
+variable "admin_first_name" {
+  description = "Administrator first name for identity domain"
+  type        = string
+}
+
+variable "admin_last_name" {
+  description = "Administrator last name for identity domain"
+  type        = string
+}
+
 variable "admin_email" {
   description = "Administrator email for identity domain"
   type        = string
