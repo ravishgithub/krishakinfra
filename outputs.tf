@@ -9,14 +9,10 @@ output "compartment_id" {
 # Identity Domain OCID (null if not created / creation disabled)
 # Works with either: (a) no count, or (b) count = 1.
 output "identity_domain_id" {
-  value = try(
-    oci_identity_domain.krishak_domain.id,         # no-count case
-    try(oci_identity_domain.krishak_domain[0].id,  # count = 1 case
-      null
-    )
-  )
+  value       = try(oci_identity_domain.krishak_domain.id, null)
   description = "OCID of the Identity Domain (null if not created)"
 }
+
 
 # Public URL for your frontend index.html
 output "frontend_bucket_url" {
