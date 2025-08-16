@@ -6,7 +6,7 @@ output "compartment_id" {
   description = "OCID of the Krishak compartment"
 }
 
-ooutput "identity_domain_id" {
+output "identity_domain_id" {
   value = try(
     oci_identity_domain.krishak_domain[0].id, # when resource uses count = 1
     oci_identity_domain.krishak_domain.id,    # when resource has no count
