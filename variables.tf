@@ -29,3 +29,10 @@ variable "admin_email" {
   description = "Administrator email for identity domain"
   type        = string
 }
+
+# Toggle to create the Identity Domain (useful for sandboxes)
+variable "create_identity_domain" {
+  description = "Whether to create the Identity Domain (set false to skip)"
+  type        = bool
+  default     = true
+}

@@ -1,4 +1,5 @@
-# Auto-pick tenancy home region (you already have these data sources/locals)
+# identity-domain.tf
+
 data "oci_identity_tenancy" "tenancy" {
   tenancy_id = var.tenancy_ocid
 }
@@ -12,14 +13,21 @@ locals {
   ])
 }
 
-# Create the Identity Domain WITHOUT admin_* attributes; bypass notifications.
 resource "oci_identity_domain" "krishak_domain" {
-  compartment_id  = oci_identity_compartment.krishak_compartment.id
-  display_name    = "krishak-id-domain"
-  description     = "Identity domain for Krishak"
-  home_region     = local.home_region_name
-  license_type    = "free"
+  count        = var.create_identity_domain ? 1 : 0
 
-  # Key workaround: no admin_* fields at all, set bypass = true
+  compartment_id          = oci_identity_compartment.krishak_compartment.id
+  display_name            = "krishak-id-domain"
+  description             = "Identity domain for Krishak"
+  home_region             = local.home_region_name
+  license_type            = "free"
+
+  # Creation-time workaround (reliable with provider 7.13)
   is_notification_bypassed = true
+}
+
+# Safe output (null when domain is skipped)
+output "identity_domain_id" {
+  value       = var.create_identity_domain ? oci_identity_domain.krishak_domain[0].id : null
+  description = "OCID of the Identity Domain (null if not created)"
 }
